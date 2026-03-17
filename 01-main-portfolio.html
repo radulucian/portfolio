@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucian Radu — Portfolio Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a3a2a;
+    --green-primary: #2d6b4a;
+    --green-accent: #3d8b62;
+    --green-light: #4aa876;
+    --green-muted: #1e4d35;
+    --black: #0a0a0a;
+    --black-soft: #111111;
+    --grey-900: #1a1a1a;
+    --grey-800: #222222;
+    --grey-700: #333333;
+    --grey-600: #555555;
+    --grey-500: #777777;
+    --grey-400: #999999;
+    --grey-300: #bbbbbb;
+    --grey-200: #e0e0e0;
+    --grey-100: #f0f0f0;
+    --white: #ffffff;
+    --white-soft: #f8f8f8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== NAVIGATION ========== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--green-accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey-400);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--green-accent);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--green-accent); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-500);
+    letter-spacing: 0.05em;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ========== HERO SECTION ========== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(45, 107, 74, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 107, 74, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45, 107, 74, 0.12) 0%, transparent 70%);
+    top: 20%;
+    right: 10%;
+    filter: blur(80px);
+  }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--green-accent);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--green-accent);
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+    max-width: 900px;
+  }
+
+  .hero-title .line-2 {
+    color: var(--grey-600);
+  }
+
+  .hero-title .accent {
+    color: var(--green-accent);
+    font-style: italic;
+  }
+
+  .hero-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--grey-400);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: var(--green-primary);
+    color: var(--white);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--green-accent);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--grey-300);
+    border: 1px solid var(--grey-700);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--green-accent);
+    color: var(--green-accent);
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--grey-600);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--green-accent), transparent);
+    animation: scrollDown 2s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat {
+    text-align: right;
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--grey-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+
+  /* ========== SECTION COMMON ========== */
+  section {
+    padding: 8rem 4rem;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid var(--grey-800);
+    padding-bottom: 2rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--green-accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .section-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--grey-600);
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== ABOUT SECTION ========== */
+  .about {
+    background: var(--black-soft);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--grey-300);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .about-text p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .about-image-block {
+    position: relative;
+  }
+
+  .about-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--grey-800) 0%, var(--green-deep) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(61, 139, 98, 0.2);
+  }
+
+  .about-image-label {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    background: var(--green-primary);
+    padding: 1rem 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .about-image .placeholder-person {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    opacity: 0.15;
+    background: linear-gradient(170deg, var(--grey-900) 0%, var(--green-deep) 50%, var(--grey-800) 100%);
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .expertise-item {
+    padding: 1.5rem;
+    border: 1px solid var(--grey-800);
+    transition: all 0.3s;
+    background: rgba(255,255,255,0.01);
+  }
+
+  .expertise-item:hover {
+    border-color: var(--green-accent);
+    background: rgba(45, 107, 74, 0.05);
+  }
+
+  .expertise-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--green-accent);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .expertise-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .expertise-desc {
+    font-size: 0.8rem;
+    color: var(--grey-500);
+    line-height: 1.5;
+  }
+
+  /* ========== PROJECTS SECTION ========== */
+  .projects {
+    background: var(--black);
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--grey-800);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    padding-left: 1rem;
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.02);
+  }
+
+  .project-card:nth-child(even) {
+    grid-template-columns: 1fr 1.2fr;
+  }
+
+  .project-card:nth-child(even) .project-image-wrapper {
+    order: 2;
+  }
+
+  .project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    transition: transform 0.5s;
+    position: relative;
+  }
+
+  .project-image-1 {
+    background: linear-gradient(135deg, #0f2b1d 0%, #1a4a32 30%, #0d1f17 100%);
+  }
+  .project-image-2 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 100%);
+  }
+  .project-image-3 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 30%, #0a0a0a 100%);
+  }
+
+  .project-image-inner {
+    position: absolute;
+    inset: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.1em;
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--green-accent);
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(61, 139, 98, 0.3);
+  }
+
+  .project-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--grey-600);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+  }
+
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+
+  .project-card:hover .project-title {
+    color: var(--green-accent);
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--grey-400);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tech-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.7rem;
+    background: var(--grey-800);
+    color: var(--grey-400);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--grey-300);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .project-link:hover { color: var(--green-accent); }
+  .project-link .arrow { transition: transform 0.3s; }
+  .project-link:hover .arrow { transform: translateX(4px); }
+
+  /* ========== PHOTOGRAPHY SECTION ========== */
+  .photography {
+    background: var(--black-soft);
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 280px);
+    gap: 0.5rem;
+  }
+
+  .photo-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .photo-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .photo-item:hover::after { opacity: 1; }
+
+  .photo-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .photo-item:nth-child(1) .photo-placeholder { background: linear-gradient(135deg, #0f2018, #1a4a32, #0d1b14); }
+  .photo-item:nth-child(2) .photo-placeholder { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+  .photo-item:nth-child(3) .photo-placeholder { background: linear-gradient(135deg, #111b16, #1e3528); }
+  .photo-item:nth-child(4) .photo-placeholder { background: linear-gradient(135deg, #1a1a1a, #333); }
+  .photo-item:nth-child(5) .photo-placeholder { background: linear-gradient(135deg, #0d1b14, #1a3a2a); }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s;
+  }
+
+  .photo-item:hover .photo-placeholder {
+    transform: scale(1.05);
+  }
+
+  .photo-placeholder svg {
+    width: 40px;
+    height: 40px;
+    opacity: 0.12;
+    fill: white;
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .photo-item:hover .photo-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .photography-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+
+  /* ========== CERTIFICATIONS ========== */
+  .certifications {
+    background: var(--black);
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .cert-card {
+    border: 1px solid var(--grey-800);
+    padding: 2.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green-accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .cert-card:hover::before { transform: scaleX(1); }
+
+  .cert-card:hover {
+    border-color: var(--green-muted);
+    background: rgba(45, 107, 74, 0.03);
+  }
+
+  .cert-badge {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--green-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--green-accent);
+  }
+
+  .cert-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.8rem;
+    color: var(--grey-500);
+    margin-bottom: 1rem;
+  }
+
+  .cert-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--grey-600);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ========== TECH STACK MARQUEE ========== */
+  .tech-marquee {
+    padding: 3rem 0;
+    border-top: 1px solid var(--grey-800);
+    border-bottom: 1px solid var(--grey-800);
+    overflow: hidden;
+    background: var(--black-soft);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey-600);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .marquee-item .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--green-accent);
+    border-radius: 50%;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ========== CONTACT SECTION ========== */
+  .contact {
+    background: var(--black);
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .contact-heading .green { color: var(--green-accent); }
+
+  .contact-text {
+    font-size: 1.05rem;
+    color: var(--grey-400);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    max-width: 500px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--grey-800);
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .contact-link-item:hover {
+    padding-left: 1rem;
+    border-color: var(--green-accent);
+  }
+
+  .contact-link-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .contact-link-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--grey-500);
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .contact-link-item:hover .contact-link-value {
+    color: var(--green-accent);
+  }
+
+  .contact-form-side {
+    padding: 3rem;
+    border: 1px solid var(--grey-800);
+    background: rgba(255,255,255,0.01);
+  }
+
+  .form-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--grey-500);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--grey-800);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .form-input:focus { border-color: var(--green-accent); }
+
+  .form-textarea {
+    width: 100%;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--grey-800);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    resize: none;
+    height: 100px;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .form-textarea:focus { border-color: var(--green-accent); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--grey-800);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-600);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-500);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--green-accent); }
+
+  .footer-back-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-500);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  .footer-back-top:hover { color: var(--green-accent); }
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+  <a href="#" class="nav-logo">lucian<span>.</span>radu</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#photography">Photography</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Available for projects
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-label">Senior Software Developer</div>
+
+  <h1 class="hero-title">
+    Building digital<br>
+    <span class="line-2">experiences with</span><br>
+    <span class="accent">precision.</span>
+  </h1>
+
+  <p class="hero-description">
+    Cloud architect, DevOps engineer, and visual storyteller — crafting
+    scalable systems and beautiful interfaces from concept to deployment.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#work" class="btn-primary">
+      View Projects <span class="arrow">→</span>
+    </a>
+    <a href="#contact" class="btn-secondary">
+      Get in Touch
+    </a>
+  </div>
+
+  <div class="hero-scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">AWS</div>
+      <div class="stat-label">Certified</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="section-header">
+    <div>
+      <div class="section-label">01 — About</div>
+      <h2 class="section-title">The intersection of<br>code & creativity</h2>
+    </div>
+    <div class="section-count">[ABOUT.md]</div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>senior software developer</strong> with a deep passion for building
+        systems that scale and interfaces that inspire. My work spans across
+        <strong>cloud computing</strong>, <strong>DevOps pipelines</strong>, and
+        <strong>full-stack web development</strong>.
+      </p>
+      <p>
+        Beyond code, I'm a visual storyteller — using photography as a medium to
+        explore light, composition, and perspective. This creative eye translates
+        directly into how I approach <strong>web design</strong> and
+        <strong>user experience</strong>.
+      </p>
+      <p>
+        From architecting cloud infrastructure on AWS to crafting pixel-perfect
+        Android applications, I bring a holistic perspective to every project.
+      </p>
+
+      <div class="expertise-grid">
+        <div class="expertise-item">
+          <div class="expertise-icon">// 01</div>
+          <div class="expertise-name">Cloud & DevOps</div>
+          <div class="expertise-desc">AWS certified. CI/CD pipelines, infrastructure as code, containerization.</div>
+        </div>
+        <div class="expertise-item">
+          <div class="expertise-icon">// 02</div>
+          <div class="expertise-name">Web Development</div>
+          <div class="expertise-desc">Full-stack applications, WordPress ecosystem, modern frameworks.</div>
+        </div>
+        <div class="expertise-item">
+          <div class="expertise-icon">// 03</div>
+          <div class="expertise-name">Mobile Apps</div>
+          <div class="expertise-desc">Native Android development with Kotlin and modern architecture patterns.</div>
+        </div>
+        <div class="expertise-item">
+          <div class="expertise-icon">// 04</div>
+          <div class="expertise-name">Photography</div>
+          <div class="expertise-desc">Visual storytelling, composition, post-processing. Active on 500px.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-image-block">
+      <div class="about-image">
+        <div class="placeholder-person">
+          <svg viewBox="0 0 24 24" fill="white" width="120" height="120" opacity="0.08">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-image-label">Based in Romania</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TECH MARQUEE ========== -->
+<div class="tech-marquee">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span> AWS</span>
+    <span class="marquee-item"><span class="dot"></span> Docker</span>
+    <span class="marquee-item"><span class="dot"></span> Kubernetes</span>
+    <span class="marquee-item"><span class="dot"></span> Terraform</span>
+    <span class="marquee-item"><span class="dot"></span> React</span>
+    <span class="marquee-item"><span class="dot"></span> Next.js</span>
+    <span class="marquee-item"><span class="dot"></span> TypeScript</span>
+    <span class="marquee-item"><span class="dot"></span> Node.js</span>
+    <span class="marquee-item"><span class="dot"></span> WordPress</span>
+    <span class="marquee-item"><span class="dot"></span> Kotlin</span>
+    <span class="marquee-item"><span class="dot"></span> Android</span>
+    <span class="marquee-item"><span class="dot"></span> CI/CD</span>
+    <span class="marquee-item"><span class="dot"></span> Linux</span>
+    <span class="marquee-item"><span class="dot"></span> Python</span>
+    <span class="marquee-item"><span class="dot"></span> Jenkins</span>
+    <span class="marquee-item"><span class="dot"></span> GitHub Actions</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item"><span class="dot"></span> AWS</span>
+    <span class="marquee-item"><span class="dot"></span> Docker</span>
+    <span class="marquee-item"><span class="dot"></span> Kubernetes</span>
+    <span class="marquee-item"><span class="dot"></span> Terraform</span>
+    <span class="marquee-item"><span class="dot"></span> React</span>
+    <span class="marquee-item"><span class="dot"></span> Next.js</span>
+    <span class="marquee-item"><span class="dot"></span> TypeScript</span>
+    <span class="marquee-item"><span class="dot"></span> Node.js</span>
+    <span class="marquee-item"><span class="dot"></span> WordPress</span>
+    <span class="marquee-item"><span class="dot"></span> Kotlin</span>
+    <span class="marquee-item"><span class="dot"></span> Android</span>
+    <span class="marquee-item"><span class="dot"></span> CI/CD</span>
+    <span class="marquee-item"><span class="dot"></span> Linux</span>
+    <span class="marquee-item"><span class="dot"></span> Python</span>
+    <span class="marquee-item"><span class="dot"></span> Jenkins</span>
+    <span class="marquee-item"><span class="dot"></span> GitHub Actions</span>
+  </div>
+</div>
+
+<!-- ========== PROJECTS ========== -->
+<section class="projects" id="work">
+  <div class="section-header">
+    <div>
+      <div class="section-label">02 — Selected Work</div>
+      <h2 class="section-title">Projects & Creations</h2>
+    </div>
+    <div class="section-count">03 Featured</div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-image-wrapper">
+      <div class="project-image project-image-1">
+        <div class="project-image-inner">Website Preview</div>
+      </div>
+    </div>
+    <div>
+      <div class="project-meta">
+        <span class="project-tag">Web Development</span>
+        <span class="project-year">2025</span>
+      </div>
+      <h3 class="project-title">Client Website — Full Stack</h3>
+      <p class="project-description">
+        A comprehensive web platform built from the ground up featuring responsive design,
+        CMS integration, and optimized performance. Deployed on AWS with automated CI/CD pipeline.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">AWS</span>
+        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">PostgreSQL</span>
+      </div>
+      <a href="#" class="project-link">
+        View Case Study <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-image-wrapper">
+      <div class="project-image project-image-2">
+        <div class="project-image-inner">Plugin Dashboard</div>
+      </div>
+    </div>
+    <div>
+      <div class="project-meta">
+        <span class="project-tag">WordPress Plugin</span>
+        <span class="project-year">2024</span>
+      </div>
+      <h3 class="project-title">WordPress Plugin — Custom Solution</h3>
+      <p class="project-description">
+        A feature-rich WordPress plugin extending core functionality with custom post types,
+        REST API endpoints, and an intuitive admin interface built with modern PHP patterns.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">PHP</span>
+        <span class="tech-pill">WordPress</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">REST API</span>
+        <span class="tech-pill">MySQL</span>
+      </div>
+      <a href="#" class="project-link">
+        View Case Study <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-image-wrapper">
+      <div class="project-image project-image-3">
+        <div class="project-image-inner">App Interface</div>
+      </div>
+    </div>
+    <div>
+      <div class="project-meta">
+        <span class="project-tag">Android App</span>
+        <span class="project-year">2024</span>
+      </div>
+      <h3 class="project-title">Android Application — Native Kotlin</h3>
+      <p class="project-description">
+        A native Android application leveraging modern architecture components, Jetpack Compose
+        for the UI layer, and cloud-backed services for real-time data synchronization.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">Kotlin</span>
+        <span class="tech-pill">Jetpack Compose</span>
+        <span class="tech-pill">Firebase</span>
+        <span class="tech-pill">MVVM</span>
+        <span class="tech-pill">Room DB</span>
+      </div>
+      <a href="#" class="project-link">
+        View Case Study <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHOTOGRAPHY ========== -->
+<section class="photography" id="photography">
+  <div class="section-header">
+    <div>
+      <div class="section-label">03 — Photography</div>
+      <h2 class="section-title">Through the Lens</h2>
+    </div>
+    <div class="section-count" id="photo-count">Loading...</div>
+  </div>
+
+  <div class="photo-grid" id="photo-grid"></div>
+
+  <div class="photography-cta">
+    <a href="02-photography-gallery.html" class="btn-secondary">
+      View Full Gallery <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<script src="500px-data.js"></script>
+<script>
+(function() {
+  var photos = window.PHOTOS_500PX || [];
+  var grid = document.getElementById('photo-grid');
+  var countEl = document.getElementById('photo-count');
+
+  function fmtCat(c) {
+    if (!c) return 'Photography';
+    return c.replace(/_/g,' ').replace(/AND /g,'& ').split(' ')
+      .map(function(w){return w.charAt(0)+w.slice(1).toLowerCase()}).join(' ');
+  }
+
+  countEl.textContent = photos.length + ' Photos on 500px';
+
+  photos.slice(0, 5).forEach(function(p) {
+    var a = document.createElement('a');
+    a.className = 'photo-item';
+    a.href = p.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML =
+      '<div class="photo-placeholder" style="background:#111">' +
+        '<img src="' + (p.img10 || p.img6) + '" alt="' + (p.name||'').replace(/"/g,'&quot;') +
+        '" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">' +
+      '</div>' +
+      '<span class="photo-caption">' + (p.name||'Untitled') + ' — ' + fmtCat(p.cat) + '</span>';
+    grid.appendChild(a);
+  });
+})();
+</script>
+
+<!-- ========== CERTIFICATIONS ========== -->
+<section class="certifications" id="credentials">
+  <div class="section-header">
+    <div>
+      <div class="section-label">04 — Credentials</div>
+      <h2 class="section-title">Certifications & Recognition</h2>
+    </div>
+    <div class="section-count">Verified</div>
+  </div>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-badge">AWS</div>
+      <div class="cert-name">AWS Certified Solutions Architect</div>
+      <div class="cert-issuer">Amazon Web Services</div>
+      <div class="cert-date">Credential ID: XXXX-XXXX</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">WP</div>
+      <div class="cert-name">Published WordPress Plugin</div>
+      <div class="cert-issuer">WordPress.org Plugin Repository</div>
+      <div class="cert-date">Active installs: 500+</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">5px</div>
+      <div class="cert-name">500px Featured Photographer</div>
+      <div class="cert-issuer">500px Community</div>
+      <div class="cert-date">Portfolio: 500px.com/lucianradu</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <div>
+      <div class="section-label">05 — Contact</div>
+      <h2 class="section-title">Let's Connect</h2>
+    </div>
+  </div>
+
+  <div class="contact-inner">
+    <div>
+      <h3 class="contact-heading">
+        Have a project<br>
+        in <span class="green">mind?</span>
+      </h3>
+      <p class="contact-text">
+        I'm always open to discussing new projects, creative ideas,
+        or opportunities to be part of something great. Whether it's cloud architecture,
+        web development, or a creative collaboration — let's talk.
+      </p>
+
+      <div class="contact-links">
+        <a class="contact-link-item" href="#">
+          <span class="contact-link-name">Email</span>
+          <span class="contact-link-value">hello@lucianradu.dev →</span>
+        </a>
+        <a class="contact-link-item" href="#">
+          <span class="contact-link-name">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/lucianradu →</span>
+        </a>
+        <a class="contact-link-item" href="#">
+          <span class="contact-link-name">GitHub</span>
+          <span class="contact-link-value">github.com/lucianradu →</span>
+        </a>
+        <a class="contact-link-item" href="#">
+          <span class="contact-link-name">500px</span>
+          <span class="contact-link-value">500px.com/lucianradu →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-side">
+      <label class="form-label">Your Name</label>
+      <input type="text" class="form-input" placeholder="John Doe">
+
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" placeholder="john@example.com">
+
+      <label class="form-label">Project Type</label>
+      <input type="text" class="form-input" placeholder="Web Development, Cloud, Design...">
+
+      <label class="form-label">Message</label>
+      <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
+
+      <button class="btn-primary" style="width: 100%; justify-content: center;">
+        Send Message <span class="arrow">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-copy">© 2026 Lucian Radu. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">500px</a>
+    <a href="#">Twitter</a>
+  </div>
+  <a href="#" class="footer-back-top">Back to Top ↑</a>
+</footer>
+
+</body>
+</html>

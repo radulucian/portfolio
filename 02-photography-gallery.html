@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography — Lucian Radu</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1a3a2a;
+    --green-primary: #2d6b4a;
+    --green-accent: #3d8b62;
+    --green-light: #4aa876;
+    --green-muted: #1e4d35;
+    --black: #0a0a0a;
+    --black-soft: #111111;
+    --grey-900: #1a1a1a;
+    --grey-800: #222222;
+    --grey-700: #333333;
+    --grey-600: #555555;
+    --grey-500: #777777;
+    --grey-400: #999999;
+    --grey-300: #bbbbbb;
+    --grey-200: #e0e0e0;
+    --grey-100: #f0f0f0;
+    --white: #ffffff;
+    --white-soft: #f8f8f8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Navigation (same as main) */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--green-accent); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey-400);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--green-accent); }
+
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--grey-400);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+  }
+  .back-link:hover { color: var(--green-accent); }
+
+  /* ========== GALLERY HERO ========== */
+  .gallery-hero {
+    padding: 10rem 4rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--grey-800);
+  }
+
+  .gallery-hero-left {
+    max-width: 600px;
+  }
+
+  .gallery-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--green-accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gallery-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--green-accent);
+  }
+
+  .gallery-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 1.05rem;
+    color: var(--grey-400);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .gallery-stats {
+    display: flex;
+    gap: 3rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .g-stat {
+    text-align: center;
+  }
+  .g-stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .g-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--grey-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.35rem;
+  }
+
+  /* ========== CATEGORY FILTERS ========== */
+  .filters {
+    padding: 2rem 4rem;
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--grey-800);
+  }
+
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    border: 1px solid var(--grey-800);
+    color: var(--grey-500);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .filter-btn:hover { border-color: var(--green-accent); color: var(--green-accent); }
+  .filter-btn.active {
+    background: var(--green-primary);
+    border-color: var(--green-primary);
+    color: var(--white);
+  }
+
+  /* ========== MASONRY GALLERY ========== */
+  .masonry-gallery {
+    padding: 2rem 4rem;
+    column-count: 3;
+    column-gap: 1rem;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: block;
+  }
+
+  .gallery-item .img-placeholder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.5s;
+  }
+
+  .gallery-item:hover .img-placeholder {
+    transform: scale(1.03);
+  }
+
+  .gallery-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 40%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+  }
+
+  .gallery-item:hover .overlay { opacity: 1; }
+
+  .overlay-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .overlay-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--grey-400);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .overlay-category {
+    color: var(--green-accent);
+  }
+
+  /* Photo placeholder shapes */
+  .ph { position: relative; }
+  .ph-tall { height: 480px; }
+  .ph-medium { height: 340px; }
+  .ph-short { height: 260px; }
+  .ph-wide { height: 300px; }
+
+  .ph svg {
+    width: 36px;
+    height: 36px;
+    opacity: 0.08;
+    fill: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ph-1 { background: linear-gradient(155deg, #0d1b14 0%, #1a4a32 40%, #0f2b1d 100%); }
+  .ph-2 { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #111 100%); }
+  .ph-3 { background: linear-gradient(160deg, #111b16 0%, #1e3528 60%, #0a1510 100%); }
+  .ph-4 { background: linear-gradient(140deg, #1a1a2e 0%, #16213e 100%); }
+  .ph-5 { background: linear-gradient(130deg, #0d1f17 0%, #1a3a2a 50%, #0a1510 100%); }
+  .ph-6 { background: linear-gradient(150deg, #222 0%, #1a1a1a 100%); }
+  .ph-7 { background: linear-gradient(170deg, #0f2018 0%, #2d5a3f 50%, #0d1b14 100%); }
+  .ph-8 { background: linear-gradient(120deg, #1a1a1a 0%, #333 50%, #111 100%); }
+  .ph-9 { background: linear-gradient(145deg, #111b16 0%, #1e4d35 100%); }
+
+  /* ========== EQUIPMENT SECTION ========== */
+  .equipment {
+    padding: 6rem 4rem;
+    border-top: 1px solid var(--grey-800);
+  }
+
+  .equipment-header {
+    margin-bottom: 3rem;
+  }
+
+  .equipment-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--green-accent);
+    margin-bottom: 1rem;
+  }
+
+  .equipment-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .equip-card {
+    border: 1px solid var(--grey-800);
+    padding: 2rem;
+    transition: all 0.3s;
+  }
+  .equip-card:hover {
+    border-color: var(--green-muted);
+    background: rgba(45, 107, 74, 0.03);
+  }
+
+  .equip-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--green-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .equip-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .equip-detail {
+    font-size: 0.8rem;
+    color: var(--grey-500);
+    line-height: 1.5;
+  }
+
+  /* ========== 500PX CTA ========== */
+  .px-cta {
+    padding: 6rem 4rem;
+    text-align: center;
+    border-top: 1px solid var(--grey-800);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .px-cta-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45, 107, 74, 0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(60px);
+  }
+
+  .px-cta h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .px-cta p {
+    font-size: 1.05rem;
+    color: var(--grey-400);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: var(--green-primary);
+    color: var(--white);
+    border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    position: relative;
+  }
+  .btn-primary:hover {
+    background: var(--green-accent);
+    transform: translateY(-2px);
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--grey-800);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-600);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--grey-500);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--green-accent); }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="01-main-portfolio.html" class="nav-logo">lucian<span>.</span>radu</a>
+  <ul class="nav-links">
+    <li><a href="01-main-portfolio.html#about">About</a></li>
+    <li><a href="01-main-portfolio.html#work">Work</a></li>
+    <li><a href="#" class="active">Photography</a></li>
+    <li><a href="01-main-portfolio.html#credentials">Credentials</a></li>
+    <li><a href="01-main-portfolio.html#contact">Contact</a></li>
+  </ul>
+  <a href="01-main-portfolio.html" class="back-link">← Back to Home</a>
+</nav>
+
+<!-- Gallery Hero -->
+<section class="gallery-hero">
+  <div class="gallery-hero-left">
+    <div class="gallery-label">Photography Portfolio</div>
+    <h1 class="gallery-title">Through the Lens</h1>
+    <p class="gallery-subtitle">
+      Capturing moments, light, and perspective. My photography explores landscapes,
+      urban geometry, and the quiet beauty of everyday scenes.
+    </p>
+  </div>
+  <div class="gallery-stats">
+    <div class="g-stat">
+      <div class="g-stat-num" id="stat-photos">--</div>
+      <div class="g-stat-label">Photos</div>
+    </div>
+    <div class="g-stat">
+      <div class="g-stat-num" id="stat-categories">--</div>
+      <div class="g-stat-label">Categories</div>
+    </div>
+    <div class="g-stat">
+      <div class="g-stat-num" id="stat-camera">--</div>
+      <div class="g-stat-label">Camera</div>
+    </div>
+  </div>
+</section>
+
+<!-- Filters -->
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-category="ALL">All</button>
+</div>
+
+<!-- Masonry Gallery -->
+<div class="masonry-gallery" id="masonry-gallery">
+  <div style="column-span:all;text-align:center;padding:4rem;color:var(--grey-600);">Loading photos from 500px...</div>
+</div>
+
+<!-- Equipment -->
+<section class="equipment" id="equipment-section">
+  <div class="equipment-header">
+    <div class="equipment-label">My Gear</div>
+    <h2 class="equipment-title">Equipment & Tools</h2>
+  </div>
+  <div class="equipment-grid" id="equipment-grid"></div>
+</section>
+
+<!-- 500px CTA -->
+<section class="px-cta">
+  <div class="px-cta-glow"></div>
+  <h2>See the Full Collection</h2>
+  <p>Browse my complete portfolio on 500px with high-resolution images and more categories.</p>
+  <a href="https://500px.com/raduthlucian" target="_blank" class="btn-primary">Visit 500px Profile <span>→</span></a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-copy">© 2026 Lucian Radu. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+    <a href="https://500px.com/raduthlucian" target="_blank">500px</a>
+    <a href="#">Twitter</a>
+  </div>
+</footer>
+
+<script src="500px-data.js"></script>
+<script>
+(function() {
+  var rawPhotos = window.PHOTOS_500PX || [];
+  var allPhotos = [];
+  var currentFilter = 'ALL';
+
+  var CATEGORY_MAP = {
+    'LANDSCAPES': 'Landscapes',
+    'URBAN_EXPLORATION': 'Urban',
+    'CITY_AND_ARCHITECTURE': 'Architecture',
+    'TRAVEL': 'Travel',
+    'BLACK_AND_WHITE': 'Black & White',
+    'STREET': 'Street',
+    'FOOD': 'Food',
+    'STILL_LIFE': 'Still Life',
+    'NATURE': 'Nature',
+    'TRANSPORTATION': 'Transport',
+    'SPORT': 'Sport',
+    'COMMERCIAL': 'Commercial',
+    'ANIMALS': 'Animals',
+    'ABSTRACT': 'Abstract',
+    'FAMILY': 'Family',
+    'PEOPLE': 'People'
+  };
+
+  function fmtCat(c) {
+    return CATEGORY_MAP[c] || (c || 'Other').replace(/_/g,' ').split(' ')
+      .map(function(w){return w.charAt(0)+w.slice(1).toLowerCase()}).join(' ');
+  }
+
+  function fmtExif(p) {
+    var parts = [];
+    if (p.ap) parts.push('f/' + p.ap);
+    if (p.ss) parts.push(p.ss + 's');
+    if (p.iso) parts.push('ISO ' + p.iso);
+    return parts.join(' \u00B7 ');
+  }
+
+  function renderGallery(photos) {
+    var g = document.getElementById('masonry-gallery');
+    g.innerHTML = '';
+    if (!photos.length) {
+      g.innerHTML = '<div style="column-span:all;text-align:center;padding:4rem;color:var(--grey-600);">No photos in this category.</div>';
+      return;
+    }
+    photos.forEach(function(p) {
+      var ar = p.w && p.h ? (p.w / p.h) : 1;
+      var h = ar < 0.7 ? 480 : (ar < 1 ? 400 : (ar < 1.3 ? 320 : 280));
+      var a = document.createElement('a');
+      a.className = 'gallery-item';
+      a.href = p.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.style.display = 'block';
+      a.innerHTML =
+        '<div class="img-placeholder" style="height:'+h+'px;position:relative;overflow:hidden;background:#111;">' +
+          '<img src="'+(p.img10||p.img6)+'" alt="'+(p.name||'').replace(/"/g,'&quot;')+'" '+
+            'style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.5s;" loading="lazy">' +
+        '</div>' +
+        '<div class="overlay">' +
+          '<div class="overlay-title">'+(p.name||'Untitled')+'</div>' +
+          '<div class="overlay-meta">' +
+            '<span class="overlay-category">'+fmtCat(p.cat)+'</span>' +
+            '<span>'+fmtExif(p)+'</span>' +
+          '</div>' +
+        '</div>';
+      g.appendChild(a);
+    });
+  }
+
+  function buildFilters(photos) {
+    var cats = {};
+    photos.forEach(function(p) { var c = p.cat || 'OTHER'; cats[c] = (cats[c]||0) + 1; });
+    var sorted = Object.entries(cats).sort(function(a,b){return b[1]-a[1]});
+    var el = document.getElementById('filters');
+
+    sorted.forEach(function(e) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-category', e[0]);
+      btn.textContent = fmtCat(e[0]) + ' (' + e[1] + ')';
+      btn.addEventListener('click', function() {
+        currentFilter = e[0];
+        updateActive();
+        renderGallery(allPhotos.filter(function(p){return (p.cat||'OTHER')===currentFilter}));
+      });
+      el.appendChild(btn);
+    });
+
+    document.querySelector('[data-category="ALL"]').addEventListener('click', function() {
+      currentFilter = 'ALL';
+      updateActive();
+      renderGallery(allPhotos);
+    });
+  }
+
+  function updateActive() {
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-category') === currentFilter);
+    });
+  }
+
+  function buildEquipment(photos) {
+    var cams = {}, lenses = {};
+    photos.forEach(function(p) {
+      if (p.cam) cams[p.cam] = (cams[p.cam]||0)+1;
+      if (p.lens) lenses[p.lens] = (lenses[p.lens]||0)+1;
+    });
+    var grid = document.getElementById('equipment-grid');
+    grid.innerHTML = '';
+    Object.entries(cams).sort(function(a,b){return b[1]-a[1]}).forEach(function(e) {
+      grid.innerHTML += '<div class="equip-card"><div class="equip-type">Camera Body</div><div class="equip-name">'+e[0]+'</div><div class="equip-detail">'+e[1]+' photos taken</div></div>';
+    });
+    Object.entries(lenses).sort(function(a,b){return b[1]-a[1]}).slice(0,3).forEach(function(e) {
+      grid.innerHTML += '<div class="equip-card"><div class="equip-type">Lens</div><div class="equip-name">'+e[0]+'</div><div class="equip-detail">'+e[1]+' photos taken</div></div>';
+    });
+  }
+
+  function updateStats(photos) {
+    var cats = new Set(), cam = {};
+    photos.forEach(function(p) {
+      if (p.cat) cats.add(p.cat);
+      if (p.cam) cam[p.cam] = (cam[p.cam]||0)+1;
+    });
+    document.getElementById('stat-photos').textContent = photos.length;
+    document.getElementById('stat-categories').textContent = cats.size;
+    var top = Object.entries(cam).sort(function(a,b){return b[1]-a[1]})[0];
+    if (top) document.getElementById('stat-camera').textContent = top[0].replace(/Google\s+/,'');
+  }
+
+  allPhotos = rawPhotos;
+  updateStats(allPhotos);
+  buildFilters(allPhotos);
+  renderGallery(allPhotos);
+  buildEquipment(allPhotos);
+})();
+</script>
+
+</body>
+</html>
