@@ -41,7 +41,7 @@ Cloud architect, DevOps engineer, and visual storyteller, crafting everything fr
 
 ### Credentials
 
-**AWS Certified Solutions Architect** -- Amazon Web Services
+[![AWS Certified Solutions Architect](https://img.shields.io/badge/AWS_Solutions_Architect-232F3E?style=flat&logo=amazonwebservices&logoColor=white)](https://www.credly.com/badges/d54a1d58-6354-4a59-a187-130beb4a71b9/linked_in_profile) **AWS Certified Solutions Architect** -- Amazon Web Services
 
 **Published WordPress Plugin** -- 500+ active installs on WordPress.org
 
