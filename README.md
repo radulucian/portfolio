@@ -1,8 +1,8 @@
 # Hey, I'm Lucian Radu
 
-**Senior Software Developer** from Romania with 10+ years of experience building scalable systems and beautiful interfaces.
+**Senior Software Developer** from Romania with 10+ years of experience building scalable systems.
 
-Cloud architect, DevOps engineer, and visual storyteller -- crafting everything from microservice platforms to native mobile apps.
+Cloud architect, DevOps engineer, and visual storyteller, crafting everything from microservice platforms to native mobile apps.
 
 ---
 
