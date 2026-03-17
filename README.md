@@ -51,6 +51,6 @@ Cloud architect, DevOps engineer, and visual storyteller, crafting everything fr
 
 ### Let's Connect
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/lucianradu)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucian-radu/)
 [![500px](https://img.shields.io/badge/500px-0099E5?style=flat&logo=500px&logoColor=white)](https://500px.com/raduthlucian)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:raduthlucian@gmail.com)
